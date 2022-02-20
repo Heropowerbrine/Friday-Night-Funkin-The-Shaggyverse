@@ -4,6 +4,7 @@
     "imagePath": "matt",
     "spritesheetType": "SPARROW",
     "barColor": [66, 99, 245],
+    "offsetsFlipWhenPlayer": true,
     "animations": [
         {
             "name": "idle",
