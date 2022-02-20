@@ -1,51 +1,51 @@
-Whats New:shaggy:1:Canon:#33724A
-Eruption:shaggy:1:Canon:#33724A
-Kaio Ken:sshaggy:1:Canon:#33724A
-Where Are You:shaggy:2:Canon:#33724A
-Blast:sshaggy:2:Canon:#33724A
-Super Saiyan:sshaggy:2:Canon:#33724A
-GOD EATER:pshaggy:3:Canon:#4B3372
-Power Link:rshaggy:4:Canon:#D11A1A
-Revenge:bmatt:4:Canon:#FF8C00
-Final Destination:shaggymatt:4:Canon,God:#FF8C00
-Soothing Power:rshaggy:5:Canon:#D11A1A
-Thunderstorm:rshaggy:5:Canon:#D11A1A
-Dissasembler:rshaggy:5:Canon:#D11A1A
-Astral Calamity:wbshaggy:6:Canon:#0F0F0F
-Talladega:zshaggy:6:Canon:#144800
+Where Are You:green-shaggy:1:Canon:#33724A
+Eruption:green-shaggy:1:Canon:#33724A
+Kaio Ken:green-shaggy:1:Canon:#33724A
+Whats New:green-shaggy:2:Canon:#33724A
+Blast:green-shaggy:2:Canon:#33724A
+Super Saiyan:green-shaggy:2:Canon:#33724A
 Zen:green-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
 Demagogue:green-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
 SrPerez Ultra Instinct:green-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
 Surge:green-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
 Enraged:green-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
 Collapse:god-shaggy:8:4k Mania,Less-Power,Canon:#1fa33e
+GOD EATER:god-shaggy:3:Canon:#4B3372
+Power Link:red-shaggy:4:Canon:#D11A1A
+Revenge:bmatt:4:Canon:#FF8C00
+Coercion:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
+Destructive Duo:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
+Burning Regret:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
+Final Destination:shaggy-matt:4:Canon,God:#FF8C00
+Cosmic Cessation:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
+Cooldown:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Soothing Power:red-shaggy:5:Canon:#D11A1A
+Heatwave:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Astromical Funk:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Thunderstorm:red-shaggy:5:Canon:#D11A1A
+Dissasembler:red-shaggy:5:Canon:#D11A1A
+Red Man:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Kami Fura:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Paradoxical:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Sandstorm:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
+Ultra Instinct:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
 Disturbance:bshag:8:4k Mania,Less-Power,Canon:#403d3d
-Aura:shaggy_green:8:4k Mania,Less-Power,Canon:#1fa33e
-Neutron:shaggy_phantom:8:4k Mania,Less-Power,Canon:#1fa33e
-Adagio:gray-shaggy:8:4k Mania,Less-Power,Canon,Extreme:#403d3d
+Ultra Instinct New:god-god-shaggy:8:4k Mania,Less-Power,Canon:#000000
 Frostbite:wintershaggy:8:4k Mania,Less-Power,Canon:#71a7fd
 Snowstorm:wintershaggy:8:4k Mania,Less-Power,Canon:#71a7fd
+Adagio:gray-shaggy:8:4k Mania,Less-Power,Canon,Extreme:#403d3d
 Uproar:yellow-shaggy:8:4k Mania,Less-Power,Canon:#ffeb0f
 Solstice:yellow-shaggy:8:4k Mania,Less-Power,Canon:#ffeb0f
 Spacial Collapse:blue-shaggy:8:4k Mania,Less-Power,Canon:#1f79a3
-Red Man:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Astromical Funk:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Cooldown:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Heatwave:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Kami Fura:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Intruder:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Paradoxical:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
-Deadly Temptation:red-shaggy:8:4k Mania,Less-Power,Canon:#9e3fab
-Power Link Nub:nubshag:8:4k Mania,Less-Power,Canon:#42c8f5
-Sandstorm:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
-Ultra Instinct:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
-Ultra Instinct New:god-god-shaggy:8:4k Mania,Less-Power,Canon:#000000
-Coercion:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
-Cosmic Cessation:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
-Burning Regret:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
-Destructive Duo:shaggy-matt:8:4k Mania,Less-Power,Canon:#9e3fab
 Absolute Chaos:syb:8:4k Mania,Less-Power,Canon:#E1E100
+Godlike:ohgodthegods:8:4k Mania,Less-Power,Canon:#40B5AD
 Quadripresent Deitys:shaggies:8:4k Mania,Less-Power,Canon:#226630
 Galaxy Demolisher:godshaggies:8:4k Mania,Less-Power,Canon:#226630
 Immortals Division:shaggies:8:4k Mania,Less-Power,Canon:#226630
-Godlike:ohgodthegods:8:4k Mania,Less-Power,Canon:#40B5AD
+Deadly Temptation:red-shaggy:8:4k Mania,Less-Power,Canon:#9e3fab
+Astral Calamity:shaggy_green:6:Canon:#0F0F0F
+Aura:shaggy_green:8:4k Mania,Less-Power,Canon:#1fa33e
+Neutron:shaggy_phantom:8:4k Mania,Less-Power,Canon:#1fa33e
+Talladega:shaggy_phantom:6:Canon:#144800
+Intruder:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
+Power Link Nub:nubshag:8:4k Mania,Less-Power,Canon:#42c8f5
