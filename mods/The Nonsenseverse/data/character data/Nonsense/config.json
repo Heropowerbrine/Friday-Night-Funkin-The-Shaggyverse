@@ -8,31 +8,31 @@
         {
             "name": "idle",
             "animation_name": "Idle0",
-            "fps": 24,
-            "looped": false
+            "fps": 30,
+            "looped": true
         },
         {
             "name": "singLEFT",
             "animation_name": "NoteLeft",
-            "fps": 24,
+            "fps": 30,
             "looped": false
         },
         {
             "name": "singDOWN",
             "animation_name": "NoteDown",
-            "fps": 24,
+            "fps": 30,
             "looped": false
         },
         {
             "name": "singUP",
             "animation_name": "NoteUp",
-            "fps": 24,
+            "fps": 30,
             "looped": false
         },
         {
             "name": "singRIGHT",
             "animation_name": "NoteRight",
-            "fps": 24,
+            "fps": 30,
             "looped": false
         }
     ]
