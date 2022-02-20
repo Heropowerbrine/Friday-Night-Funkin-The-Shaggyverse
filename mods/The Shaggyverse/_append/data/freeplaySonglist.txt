@@ -30,7 +30,7 @@ Paradoxical:red-shaggy:8:4k Mania,Less-Power,Canon:#d13030
 Sandstorm:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
 Ultra Instinct:god-red-shaggy:8:4k Mania,Less-Power,Canon:#6e4685
 Disturbance:bshag:8:4k Mania,Less-Power,Canon:#403d3d
-Ultra Instinct New:god-god-shaggy:8:4k Mania,Less-Power,Canon:#000000
+Ultra-Instinct-New:god-god-shaggy:8:4k Mania,Less-Power,Canon:#000000
 Frostbite:wintershaggy:8:4k Mania,Less-Power,Canon:#71a7fd
 Snowstorm:wintershaggy:8:4k Mania,Less-Power,Canon:#71a7fd
 Adagio:gray-shaggy:8:4k Mania,Less-Power,Canon,Extreme:#403d3d
