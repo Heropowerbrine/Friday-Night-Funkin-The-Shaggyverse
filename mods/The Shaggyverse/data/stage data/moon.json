@@ -1,0 +1,34 @@
+{
+	"character_Positions": [
+		[
+			1178,
+			814
+		],
+		[
+			469,
+			809
+		],
+		[
+			884,
+			676
+		]
+	],
+	"objects": [
+		{
+			"is_Animated": false,
+			"position": [
+				-440,
+				-175
+			],
+			"scroll_Factor": [
+				0.9,
+				0.9
+			],
+			"antialiased": true,
+			"alpha": 1,
+			"scale": 1.15,
+			"file_Name": "moon"
+		}
+	],
+	"camera_Zoom": 0.9
+}

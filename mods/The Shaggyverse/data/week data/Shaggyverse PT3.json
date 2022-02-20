@@ -1,0 +1,124 @@
+{
+    "groupName": "Shaggyverse PT3",
+    "pathName": "shaggyverse",
+    "weeks": [
+        {
+            "imagePath": "week14",
+            "songs": [
+                "Uproar",
+                "Solstice"
+            ],
+            "characters": [
+                "yshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "insanity",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week15",
+            "songs": [
+                "Spacial Collapse"
+            ],
+            "characters": [
+                "bshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Absolute Madness. Come at me Sillyfangirl.",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week16",
+            "songs": [
+                "Absolute Chaos",
+                "Godlike"
+            ],
+            "characters": [
+                "shaggymatt",
+                "bf",
+                "bambi"
+            ],
+            "weekTitle": "My PC + Minecraft shaders",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week17",
+            "songs": [
+                "Quadripresent Deitys",
+                "Galaxy Demolisher",
+                "Immortals Division"
+            ],
+            "characters": [
+                "rgybshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "monster shaggy funni",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week18",
+            "songs": [
+                "Deadly Temptation"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "monster shaggy funni",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week19",
+            "songs": [
+                "Astral Calamity",
+                "Aura"
+            ],
+            "characters": [
+                "wbshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "monster shaggy funni",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week20",
+            "songs": [
+                "Neutron",
+                "Talladega"
+            ],
+            "characters": [
+                "zshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "monster shaggy funni",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        }
+    ]
+}

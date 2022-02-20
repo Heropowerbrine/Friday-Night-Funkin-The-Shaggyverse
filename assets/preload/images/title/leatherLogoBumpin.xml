@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="leatherLogoBumpin.png">
+	<!-- Created with Adobe Animate version 21.0.9.42677 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="logo bumpin0000" x="30" y="430" width="690" height="425" frameX="-17" frameY="-14" frameWidth="716" frameHeight="447"/>
+</TextureAtlas>

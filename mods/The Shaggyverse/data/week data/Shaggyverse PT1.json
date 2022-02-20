@@ -1,0 +1,126 @@
+{
+    "groupName": "Shaggyverse PT1",
+    "pathName": "shaggyverse",
+    "weeks": [
+        {
+            "imagePath": "week0",
+            "songs": [
+                "Whats New",
+                "Eruption",
+                "Kaio Ken"
+            ],
+            "characters": [
+                "shaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "The Beginning",
+            "difficulties": [
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week1",
+            "songs": [
+                "Where Are You",
+                "Blast",
+                "Super Saiyan"
+            ],
+            "characters": [
+                "shaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": " It's Getting Crazy",
+            "difficulties": [
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week2",
+            "songs": [
+                "Zen",
+                "Demagogue",
+                "Srperez Ultra Instinct"
+            ],
+            "characters": [
+                "shaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Green Shaggy's Back?",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week3",
+            "songs": [
+                "Surge",
+                "Enraged"
+            ],
+            "characters": [
+                "shaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "The End..?",
+            "difficulties": [
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week4",
+            "songs": [
+                "Collapse",
+                "GOD EATER"
+            ],
+            "characters": [
+                "pshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "GODPOWER",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week5",
+            "songs": [
+                "Power Link",
+                "Revenge",
+                "Coercion"
+            ],
+            "characters": [
+                "shaggymatt",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Hell Is Loose",
+            "difficulties": [
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week6",
+            "songs": [
+                "Destructive Duo",
+                "Burning Regret",
+                "Final Destination",
+                "Cosmic Cessation"
+            ],
+            "characters": [
+                "shaggymatt",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "oo, floaty",
+            "difficulties": [
+                ["canon", "shaggy/canon"]
+            ]
+        }
+    ]
+}

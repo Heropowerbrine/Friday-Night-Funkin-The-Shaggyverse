@@ -1,0 +1,18 @@
+{
+    "character_Positions":[
+        [1167, 800],
+        [84, 800],
+        [600, 775]
+    ],
+    "camera_Zoom": 0.9,
+    "objects": [
+        {
+            "position":[-480, -300],
+            "scroll_Factor": [0.9, 0.9],
+            "scale": 2.75,
+            "antialiased": true,
+            "file_Name": "mansion",
+            "is_Animated": false
+        }
+    ]
+}

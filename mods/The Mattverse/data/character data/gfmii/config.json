@@ -1,0 +1,22 @@
+{
+    "defaultFlipX": false,
+    "dancesLeftAndRight": true,
+    "imagePath": "gfmii",
+    "spritesheetType": "SPARROW",
+    "barColor": [186, 49, 104],
+    "healthIcon": "bf",
+    "animations": [
+        {
+            "name": "sad",
+            "animation_name": "gf sad",
+            "fps": 24,
+            "looped": false,
+        },
+        {
+            "name": "GF Dancing Beat",
+            "animation_name": "GF Dancing Beat",
+            "fps": 24,
+            "looped": false,
+        }
+    ]
+}

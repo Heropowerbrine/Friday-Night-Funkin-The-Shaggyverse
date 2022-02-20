@@ -1,0 +1,39 @@
+{
+    "defaultFlipX": false,
+    "dancesLeftAndRight": false,
+    "imagePath": "Nonsense",
+    "spritesheetType": "SPARROW",
+    "barColor": [116, 230, 255],
+    "animations": [
+        {
+            "name": "idle",
+            "animation_name": "Idle0",
+            "fps": 24,
+            "looped": false
+        },
+        {
+            "name": "singLEFT",
+            "animation_name": "NoteLeft",
+            "fps": 24,
+            "looped": false
+        },
+        {
+            "name": "singDOWN",
+            "animation_name": "NoteDown",
+            "fps": 24,
+            "looped": false
+        },
+        {
+            "name": "singUP",
+            "animation_name": "NoteUp",
+            "fps": 24,
+            "looped": false
+        },
+        {
+            "name": "singRIGHT",
+            "animation_name": "NoteRight",
+            "fps": 24,
+            "looped": false
+        }
+    ]
+}

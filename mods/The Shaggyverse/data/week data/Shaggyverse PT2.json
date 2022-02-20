@@ -1,0 +1,126 @@
+{
+    "groupName": "Shaggyverse PT2",
+    "pathName": "shaggyverse",
+    "weeks": [
+        {
+            "imagePath": "week7",
+            "songs": [
+                "Cooldown",
+                "Soothing Power",
+                "Heatwave",
+                "Astromical Funk"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "ogm is that neil armstrong?!?!1",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week8",
+            "songs": [
+                "Thunderstorm",
+                "Dissasembler",
+                "Red Man"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "fresh start",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week9",
+            "songs": [
+                "Kami Fura",
+                "Paridocial"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "funky",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week10",
+            "songs": [
+                "Sandstorm",
+                "Ultra Instinct"
+            ],
+            "characters": [
+                "godred",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Why is there two of them?",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week11",
+            "songs": [
+                "Disturbance",
+                "Ultra Instinct New"
+            ],
+            "characters": [
+                "shaggymatt",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Two Powerful Beings",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week12",
+            "songs": [
+                "Snowstorm"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "oh no...",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week13",
+            "songs": [
+                "Adagio"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "the two",
+            "difficulties": [
+
+                ["canon", "shaggy/canon"]
+            ]
+        }
+    ]
+}
