@@ -17,7 +17,7 @@
             ],
             "weekTitle": "Undisturbed",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -35,7 +35,7 @@
             ],
             "weekTitle": "Peacefulness",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -52,7 +52,7 @@
             ],
             "weekTitle": "Funky",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -69,7 +69,7 @@
             ],
             "weekTitle": "Going All Out",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -86,7 +86,7 @@
             ],
             "weekTitle": "Oh No...",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -102,7 +102,7 @@
             ],
             "weekTitle": "Ice-Cold",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -118,7 +118,7 @@
             ],
             "weekTitle": "Another One?",
             "difficulties": [
-
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         }

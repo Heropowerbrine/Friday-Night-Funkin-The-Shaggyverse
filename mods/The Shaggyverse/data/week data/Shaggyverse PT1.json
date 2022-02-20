@@ -16,6 +16,7 @@
             ],
             "weekTitle": "The First Deity",
             "difficulties": [
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -33,6 +34,7 @@
             ],
             "weekTitle": " Having A Blast",
             "difficulties": [
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -67,6 +69,7 @@
             ],
             "weekTitle": "Craziness",
             "difficulties": [
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -101,6 +104,7 @@
             ],
             "weekTitle": "The Two Unbeatables",
             "difficulties": [
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         },
@@ -119,6 +123,7 @@
             ],
             "weekTitle": "Rematch",
             "difficulties": [
+                ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
             ]
         }
