@@ -9,8 +9,6 @@ local rock_Stuff = {
 }
 
 function start (song)
-	print("Song: " .. song .. " @ " .. bpm .. " downscroll: " .. downscroll)
-	
 	window = 240
 
 	for i=start_Rock_Num, end_Rock_Num do
@@ -23,6 +21,7 @@ end
 function update(elapsed)
 	a = a + (elapsed * 1.5)
 	
+	setActorPos(-400 + ((math.cos(a) * 2) * window), -2450 + (math.sin(2 * a) * window), "dad")
 
 	for i=start_Rock_Num, end_Rock_Num do
 		local actor_Name = "undefinedSprite" .. tostring(i)

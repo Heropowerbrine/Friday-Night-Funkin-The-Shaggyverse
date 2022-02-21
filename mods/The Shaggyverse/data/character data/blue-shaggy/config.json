@@ -1,14 +1,20 @@
 {
     "defaultFlipX": false,
-    "dancesLeftAndRight": false,
+    "dancesLeftAndRight": true,
     "imagePath": "blue-shaggy",
     "spritesheetType": "SPARROW",
     "barColor": [52, 158, 235],
     "animations": [
         {
-            "name": "idle",
-            "animation_name": "shaggy_idle",
-            "fps": 24,
+            "name": "danceLeft",
+            "animation_name": "shaggy_idle0",
+            "fps": 30,
+            "looped": false
+        },
+        {
+            "name": "danceRight",
+            "animation_name": "shaggy_idle2",
+            "fps": 30,
             "looped": false
         },
         {
@@ -32,6 +38,12 @@
         {
             "name": "singRIGHT",
             "animation_name": "shaggy_right",
+            "fps": 24,
+            "looped": false
+        },
+        {
+            "name": "burst",
+            "animation_name": "burst",
             "fps": 24,
             "looped": false
         }
