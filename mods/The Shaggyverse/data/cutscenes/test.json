@@ -1,0 +1,67 @@
+{
+    "type": "dialogue",
+    "dialogueBox": "speech_bubble_talking",
+    "dialogueBoxFlips": true,
+    "dialogueMusic": "",
+    "dialogueSections": [
+        {
+            "side": "left",
+            "showOtherPortrait": true,
+            "leftPortrait": {
+                "sprite": "spooky bois",
+                "x": 30,
+                "y": 100,
+                "antialiased": true
+            },
+            "rightPortrait": {
+                "sprite": "bf",
+                "x": 0,
+                "y": 100,
+                "antialiased": true
+            },
+            "has_Hand": false,
+            "dialogue": {
+                "font": "pixel.otf",
+                "text": "Test Dialogue",
+                "sound": "cutscene/pixelText",
+                "color": "#000000",
+                "hasShadow": false,
+                "size": 24,
+                "box_Offset": [30,120],
+                "alphabet": false
+            },
+            "box_FPS": 24,
+            "open_Box": true,
+            "box_Antialiased": true,
+            "box_Anim": "speech bubble normal0",
+            "box_Open": "Speech Bubble Normal Open0"
+        },
+        {
+            "side": "right",
+            "showOtherPortrait": true,
+            "leftPortrait": {
+                "sprite": "spooky bois",
+                "x": 30,
+                "y": 100,
+                "antialiased": true
+            },
+            "rightPortrait": {
+                "sprite": "bf",
+                "x": 0,
+                "y": 100,
+                "antialiased": true
+            },
+            "has_Hand": false,
+            "dialogue": {
+                "font": "pixel.otf",
+                "text": "coolswag",
+                "sound": "cutscene/pixelText",
+                "color": "#000000",
+                "hasShadow": false,
+                "size": 24,
+                "box_Offset": [30,120],
+                "alphabet": false
+            }
+        }
+    ]
+}
