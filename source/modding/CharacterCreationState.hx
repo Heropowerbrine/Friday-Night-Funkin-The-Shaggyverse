@@ -1,407 +1,305 @@
 package modding;
 
+import ui.FlxUIDropDownMenuCustom;
+import utilities.CoolUtil;
+import flixel.FlxSprite;
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import flixel.FlxCamera;
+import flixel.FlxObject;
+import game.Character;
+import game.StageGroup;
+import states.OptionsMenu;
+import utilities.MusicUtilities;
+import flixel.FlxG;
+import game.Conductor;
+import states.MusicBeatState;
+
 #if discord_rpc
 import utilities.Discord.DiscordClient;
 #end
-
-import ui.FlxUIDropDownMenuCustom;
-import states.MusicBeatState;
-import states.MainMenuState;
-import openfl.events.IOErrorEvent;
-import openfl.events.Event;
-import openfl.net.FileReference;
-import flixel.ui.FlxButton;
-import lime.utils.Assets;
-import flixel.addons.ui.FlxUICheckBox;
-import flixel.text.FlxText;
-import flixel.FlxG;
-import flixel.addons.ui.FlxUITabMenu;
-import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.addons.ui.FlxUIInputText;
-import flixel.addons.ui.FlxUI;
-import flixel.group.FlxGroup;
-import game.Character;
-import haxe.Json;
-import modding.CharacterConfig;
 
 using StringTools;
 
 class CharacterCreationState extends MusicBeatState
 {
-    // OTHER STUFF IDK LMAO //
-    public static var instance:CharacterCreationState;
+    var stage:StageGroup;
+    var character:Character;
+    var charStr:String = "bf";
 
-    // SETTINGS //
-    public var Character_Name:String = "bf";
-    public var Image_Path:String = "BOYFRIEND";
+    var animList:FlxText;
 
-    public var Default_FlipX:Bool = true;
-    public var LeftAndRight_Idle:Bool = false;
+    var camFollow:FlxObject;
 
-    public var Animations:Array<CharacterAnimation> = [];
+    var coolCam:FlxCamera;
+    var camHUD:FlxCamera;
 
-    public var Graphics_Size:Float;
-    public var Bar_Color:Array<Int> = [255, 0, 0];
+    var curAnimation:Int = 0;
+    var animations:Array<String> = [];
 
-    // VARIABLES //
-    
-    // DATA //
-    private var Raw_JSON_Data:String;
-    private var CC_Data:CharacterConfig;
+    var funnyBox:FlxSprite;
 
-    private var Animation_List:Array<String>;
-    private var Selected_Animation:String = "idle";
+    var characters:Map<String, Array<String>> = new Map<String, Array<String>>();
 
-    // OBJECTS //
-    private var UI_Group:FlxGroup = new FlxGroup();
+    var charDropDown:FlxUIDropDownMenuCustom;
+    var modDropDown:FlxUIDropDownMenuCustom;
 
-    private var Character:Character;
-
-    private var Image_Path_Box:FlxUIInputText;
-    private var Char_Name_Box:FlxUIInputText;
-
-    private var UI_Base:FlxUI;
-    
-    private var Animation_List_Menu:FlxUIDropDownMenuCustom;
-
-    public function new(?New_Character:String = "bf")
+    override public function new(?char:String = "bf")
     {
         super();
 
-        instance = this;
-
-        Character_Name = New_Character;
+        charStr = char;
     }
 
     override function create()
     {
         FlxG.mouse.visible = true;
 
-        #if NO_PRELOAD_ALL
-        if(Assets.getLibrary("shared") == null)
-        {
-			Assets.loadLibrary("shared").onComplete(function (_) {
-                Load_Character_File_JSON_Data();
+        coolCam = new FlxCamera();
+        camHUD = new FlxCamera();
+        camHUD.bgColor.alpha = 0;
 
-                Create_UI();
-                add(UI_Group);
-                add(Character);
+        FlxG.cameras.reset();
+        FlxG.cameras.add(coolCam, true);
+        FlxG.cameras.add(camHUD, false);
+
+		FlxG.cameras.setDefaultDrawTarget(coolCam, true);
+
+		FlxG.camera = coolCam;
+
+        camFollow = new FlxObject(0, 0, 2, 2);
+        camFollow.screenCenter();
+		add(camFollow);
+
+        coolCam.follow(camFollow);
+
+        stage = new StageGroup("stage");
+        add(stage);
+        add(stage.infrontOfGFSprites);
+        add(stage.foregroundSprites);
+
+        funnyBox = new FlxSprite(0,0);
+        funnyBox.makeGraphic(32, 32, FlxColor.RED);
+
+        reloadCharacterStuff();
+
+        animList = new FlxText(0,0,0,"Corn", 24);
+        animList.color = FlxColor.CYAN;
+        animList.cameras = [camHUD];
+        animList.font = Paths.font("vcr.ttf");
+        animList.borderSize = 1;
+        animList.borderStyle = OUTLINE;
         
-                #if discord_rpc
-                DiscordClient.changePresence("Creating A Character", null, null);
-                #end
-            });
-        }
-        else
-        {#end
-            Load_Character_File_JSON_Data();
+        updateAnimList();
+        
+        add(animList);
 
-            Create_UI();
-            add(UI_Group);
-            add(Character);
-    
-            #if discord_rpc
-            DiscordClient.changePresence("Creating A Character", null, null);
-            #end
-        #if NO_PRELOAD_ALL } #end
-    }
+        var characterList = CoolUtil.coolTextFile(Paths.txt('characterList'));
 
-    public function Read_JSON_Data(?JSON_Data:Null<String>)
-    {
-        if(JSON_Data == null)
-            CC_Data = cast Json.parse(Raw_JSON_Data);
-        else
-            CC_Data = cast Json.parse(JSON_Data);
+		for(Text in characterList)
+		{
+			var Properties = Text.split(":");
 
-        Image_Path = CC_Data.imagePath;
-        Default_FlipX = CC_Data.defaultFlipX;
-        LeftAndRight_Idle = CC_Data.dancesLeftAndRight;
-        Animations = CC_Data.animations;
+			var name = Properties[0];
+			var mod = Properties[1];
 
-        if(CC_Data.graphicsSize != null)
-            Graphics_Size = CC_Data.graphicsSize;
-        else
-            Graphics_Size = 1;
-    }
+			var base_array;
 
-    private function Create_UI()
-    {
-        // BASE //
-        UI_Base = new FlxUI(null, null);
+			if(characters.exists(mod))
+				base_array = characters.get(mod);
+			else
+				base_array = [];
 
-        // CHARTING STATE THING //
-        var UI_box = new FlxUITabMenu(null, [], false);
+			base_array.push(name);
+			characters.set(mod, base_array);
+		}
 
-        UI_box.resize(300, 400);
-        UI_box.x = 10;
-        UI_box.y = 70;
+        var arrayCharacters = ["bf","gf"];
+		var tempCharacters = characters.get("default");
 
-        var Grid_Background:FlxSprite = FlxGridOverlay.create(25, 25);
-		Grid_Background.scrollFactor.set(0,0);
-
-        // TEXT LABELS //
-        var Name_Label:FlxText = new FlxText(20, 70, 0, "Character Name");
-        var Path_Label:FlxText = new FlxText(20, 100, 0, "Image Path (after shared/images/characters/)");
-
-        var Actions_Label:FlxText = new FlxText(20, 300, 0, "Actions");
-
-        // TEXT BOXES //
-        var Name_Box:FlxUIInputText = new FlxUIInputText(20, 85, 150, Character_Name, 8);
-        Char_Name_Box = Name_Box;
-
-        var Path_Box:FlxUIInputText = new FlxUIInputText(20, 115, 150, Image_Path, 8);
-        Image_Path_Box = Path_Box;
-
-        // CHECK BOXES //
-        var Flip_Box:FlxUICheckBox = new FlxUICheckBox(20, 135, null, null, "Flipped by Default?", 250);
-        Flip_Box.checked = Default_FlipX;
-
-        Flip_Box.callback = function()
+        if(tempCharacters != null)
         {
-            Default_FlipX = Flip_Box.checked;
-        };
-
-        var L_And_R_Box:FlxUICheckBox = new FlxUICheckBox(20, 160, null, null, "Dances to the left and right?", 250);
-        L_And_R_Box.checked = LeftAndRight_Idle;
-
-        L_And_R_Box.callback = function()
-        {
-            LeftAndRight_Idle = L_And_R_Box.checked;
-        };
-
-        // DROP DOWNS //
-        Load_Animations();
-
-        // BUTTONS //
-        var Reload_Char:FlxButton = new FlxButton(20, 325, "Load Settings", function(){
-            if(Character != null)
+            for(Item in tempCharacters)
             {
-                remove(Character);
-                Character.kill();
-                Character.destroy();
+                arrayCharacters.push(Item);
             }
-
-            Create_Character();
-
-            add(Character);
-
-            Load_Animations();
-        });
-
-        var Reload_Json:FlxButton = new FlxButton(Reload_Char.x + Reload_Char.width, Reload_Char.y, "Load JSON", function(){
-            if(Character != null)
-            {
-                remove(Character);
-                Character.kill();
-                Character.destroy();
-            }
-
-            Load_Character_File_JSON_Data();
-            Create_Character();
-
-            Path_Box.text = Image_Path;
-            Name_Box.text = Character_Name;
-            Flip_Box.checked = Default_FlipX;
-            L_And_R_Box.checked = LeftAndRight_Idle;
-
-            add(Character);
-
-            Load_Animations();
-        });
-
-        var Save_JSON:FlxButton = new FlxButton(Reload_Char.x, Reload_Char.y + Reload_Char.height + 2, "Save JSON", function(){
-            save_JSON();
-        });
-
-        var Play_Selected_Animation:FlxButton = new FlxButton(Animation_List_Menu.x + Animation_List_Menu.width + 1, Animation_List_Menu.y, "Play Animation", function(){
-            Character.playAnim(Selected_Animation, true);
-            Character.screenCenter();
-        });
-
-        // ADDING OBJECTS //
-        UI_Base.add(Grid_Background);
-
-        UI_Base.add(UI_box);
-
-        UI_Base.add(Name_Label);
-        UI_Base.add(Name_Box);
-
-        UI_Base.add(Path_Label);
-        UI_Base.add(Path_Box);
-
-        UI_Base.add(Flip_Box);
-        UI_Base.add(L_And_R_Box);
-
-        UI_Base.add(Actions_Label);
-        UI_Base.add(Reload_Char);
-        UI_Base.add(Reload_Json);
-        UI_Base.add(Save_JSON);
-
-        UI_Base.add(Animation_List_Menu);
-        UI_Base.add(Play_Selected_Animation);
-
-        UI_Group.add(UI_Base);
-
-        Create_Character();
-    }
-
-    function Load_New_JSON_Data()
-    {
-        CC_Data = {
-            imagePath: Image_Path,
-            animations: Animations,
-            defaultFlipX: Default_FlipX,
-            dancesLeftAndRight: LeftAndRight_Idle,
-            graphicsSize: Graphics_Size,
-            graphicSize: Graphics_Size,
-            barColor: Bar_Color,
-            positionOffset: [0,0],
-            cameraOffset: [0,0],
-            characters: [],
-            offsetsFlipWhenEnemy: false,
-            offsetsFlipWhenPlayer: true,
-            trail: false,
-            trailLength: 4,
-            trailDelay: 24,
-            trailStalpha: 0.3,
-            trailDiff: 0.069,
-            deathCharacterName: "bf-dead",
-            swapDirectionSingWhenPlayer: true,
-            healthIcon: Character_Name,
-            antialiased: true
-        };
-    }
-
-    function Load_Character_File_JSON_Data()
-    {
-        Raw_JSON_Data = "";
-
-		Raw_JSON_Data = Assets.getText(Paths.json("character data/" + Character_Name + "/config")).trim();
-
-        Read_JSON_Data();
-    }
-
-    function Create_Character(?New_Char:String)
-    {
-        if(New_Char != null)
-            Character_Name = New_Char;
-
-        Load_New_JSON_Data();
-
-        Character = new Character(0, 0, "", true);
-        Character.debugMode = true;
-        Character.loadCharacterConfiguration(CC_Data);
-        Character.loadOffsetFile(Character_Name);
-        Character.screenCenter();
-        Character.visible = true;
-    }
-
-    function Load_Animations()
-    {
-        Animation_List = [];
-
-        for(animation in CC_Data.animations)
-        {
-            var name = animation.name;
-
-            Animation_List.push(name);
         }
 
-        var newList:Bool = true;
-
-        if(Animation_List_Menu != null)
+        charDropDown = new FlxUIDropDownMenuCustom(10, 10, FlxUIDropDownMenuCustom.makeStrIdLabelArray(arrayCharacters, true), function(character:String)
         {
-            UI_Base.remove(Animation_List_Menu);
-            Animation_List_Menu.destroy();
-            newList = false;
-        }
+            charStr = arrayCharacters[Std.parseInt(character)];
+            reloadCharacterStuff();
+        }, null, null, null, null, camHUD);
 
-        Animation_List_Menu = new FlxUIDropDownMenuCustom(100, 300, FlxUIDropDownMenuCustom.makeStrIdLabelArray(Animation_List, true), function(id:String){
-            Selected_Animation = Animation_List[Std.parseInt(id)];
-            Character.playAnim(Selected_Animation, true);
-            Character.screenCenter();
-            Load_Animation_Info();
-        });
+        charDropDown.x = FlxG.width - charDropDown.width;
+        charDropDown.cameras = [camHUD];
 
-        if(LeftAndRight_Idle)
-            Selected_Animation = Animation_List[Std.parseInt("danceLeft")];
-        else
-            Selected_Animation = Animation_List[Std.parseInt("idle")];
+        var mods:Array<String> = [];
 
-        if(!newList)
-            UI_Base.add(Animation_List_Menu);
+		var iterator = characters.keys();
+
+		for(i in iterator)
+		{
+			mods.push(i);
+		}
+
+        var selected_mod:String = "default";
+
+		var modDropDown = new FlxUIDropDownMenuCustom(charDropDown.x - charDropDown.width, charDropDown.y, FlxUIDropDownMenuCustom.makeStrIdLabelArray(mods, true), function(mod:String)
+		{
+			selected_mod = mods[Std.parseInt(mod)];
+
+			arrayCharacters = ["bf","gf"];
+			tempCharacters = characters.get(selected_mod);
+			
+			for(Item in tempCharacters)
+			{
+				arrayCharacters.push(Item);
+			}
+
+			var character_Data_List = FlxUIDropDownMenuCustom.makeStrIdLabelArray(arrayCharacters, true);
+			
+			charDropDown.setData(character_Data_List);
+			charDropDown.selectedLabel = charStr;
+		}, null, null, null, null, camHUD);
+
+        modDropDown.selectedLabel = "default";
+
+        add(modDropDown);
+        add(charDropDown);
+
+        #if discord_rpc
+        DiscordClient.changePresence("Creating characters.", null, null, true);
+        #end
+
+        if(FlxG.sound.music == null)
+            FlxG.sound.playMusic(MusicUtilities.GetOptionsMenuMusic(), 0.7, true);
+
+        super.create();
     }
 
-    function Load_Animation_Info()
+    override function update(elapsed:Float)
     {
-
-    }
-
-    override function update(elapsed:Float) {
         super.update(elapsed);
 
-        if(Char_Name_Box != null)
-            Character_Name = Char_Name_Box.text;
-        if(Image_Path_Box != null)
-            Image_Path = Image_Path_Box.text;
+        if(FlxG.sound.music != null)
+            Conductor.songPosition = FlxG.sound.music.time;
 
-        if(Character != null)
-            Character.screenCenter();
+        if(controls.BACK)
+            FlxG.switchState(new OptionsMenu());
 
-        if(FlxG.keys.justPressed.ESCAPE)
+        if(FlxG.keys.justPressed.SPACE)
+            character.playAnim(animations[curAnimation % animations.length], true);
+
+        if(FlxG.keys.justPressed.W)
+            curAnimation -= 1;
+        if(FlxG.keys.justPressed.S)
+            curAnimation += 1;
+
+        if(FlxG.keys.justPressed.S || FlxG.keys.justPressed.W)
         {
-            FlxG.mouse.visible = false;
-            FlxG.switchState(new MainMenuState());
+            if(curAnimation < 0)
+                curAnimation = animations.length - 1;
+            if(curAnimation > animations.length - 1)
+                curAnimation = 0;
+
+            updateAnimList();
+
+            character.playAnim(animations[curAnimation % animations.length], true);
         }
+
+        var shiftThing:Int = FlxG.keys.pressed.SHIFT ? 5 : 1;
+
+		if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L) // stolen from animation debug lmao
+		{
+			if (FlxG.keys.pressed.I)
+				camFollow.velocity.y = -90 * shiftThing;
+			else if (FlxG.keys.pressed.K)
+				camFollow.velocity.y = 90 * shiftThing;
+			else
+				camFollow.velocity.y = 0;
+
+			if (FlxG.keys.pressed.J)
+				camFollow.velocity.x = -90 * shiftThing;
+			else if (FlxG.keys.pressed.L)
+				camFollow.velocity.x = 90 * shiftThing;
+			else
+				camFollow.velocity.x = 0;
+		}
+		else
+			camFollow.velocity.set();
+
+        if (FlxG.keys.pressed.E)
+			coolCam.zoom += 2 * elapsed;
+		if (FlxG.keys.pressed.Q)
+			coolCam.zoom -= 2 * elapsed;
+
+        if(coolCam.zoom < 0.1)
+            coolCam.zoom = 0.1;
+        if(coolCam.zoom > 5)
+            coolCam.zoom = 5;
     }
 
-    var _file:FileReference;
-
-    private function save_JSON()
+    function reloadCharacterStuff()
     {
-        var data:String = Json.stringify(CC_Data, null, "\t");
+        if(charDropDown != null)
+            remove(charDropDown);
+        if(modDropDown != null)
+            remove(modDropDown);
 
-        if ((data != null) && (data.length > 0))
+        remove(funnyBox);
+
+        if(character != null)
         {
-            _file = new FileReference();
-            _file.addEventListener(Event.COMPLETE, onSaveComplete);
-            _file.addEventListener(Event.CANCEL, onSaveCancel);
-            _file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-
-            _file.save(data.trim(), "config.json");
+            remove(character);
+            character.kill();
+            character.destroy();
         }
+
+        if(charStr == "")
+            charStr = "bf";
+
+        character = new Character(0, 0, charStr);
+        character.shouldDance = false;
+
+        @:privateAccess
+        if(character.offsetsFlipWhenEnemy)
+        {
+            character.isPlayer = true;
+            character.flipX = !character.flipX;
+            character.loadOffsetFile(character.curCharacter);
+        }
+
+        add(character);
+
+        add(funnyBox);
+
+        if(modDropDown != null)
+            add(modDropDown);
+        if(charDropDown != null)
+            add(charDropDown);
+
+        animations = character.animation.getNameList();
+
+        if(animations.length < 1)
+            animations = ["idle"];
+
+        var coolPos:Array<Float> = stage.getCharacterPos(character.isPlayer ? 0 : 1, character);
+
+        if(character.isPlayer)
+            funnyBox.setPosition(stage.player_1_Point.x, stage.player_1_Point.y);
+        else
+            funnyBox.setPosition(stage.player_2_Point.x, stage.player_2_Point.y);
+
+        character.setPosition(coolPos[0], coolPos[1]);
+
+        if(animList != null)
+            updateAnimList();
     }
 
-    function onSaveComplete(_):Void
+    function updateAnimList()
     {
-        _file.removeEventListener(Event.COMPLETE, onSaveComplete);
-        _file.removeEventListener(Event.CANCEL, onSaveCancel);
-        _file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-        _file = null;
-        FlxG.log.notice("Successfully saved LEVEL DATA.");
-    }
-
-    /**
-        * Called when the save file dialog is cancelled.
-        */
-    function onSaveCancel(_):Void
-    {
-        _file.removeEventListener(Event.COMPLETE, onSaveComplete);
-        _file.removeEventListener(Event.CANCEL, onSaveCancel);
-        _file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-        _file = null;
-    }
-
-    /**
-        * Called if there is an error while saving the gameplay recording.
-        */
-    function onSaveError(_):Void
-    {
-        _file.removeEventListener(Event.COMPLETE, onSaveComplete);
-        _file.removeEventListener(Event.CANCEL, onSaveCancel);
-        _file.removeEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-        _file = null;
-        FlxG.log.error("Problem saving Level data");
+        animList.text = (Std.string(animations).replace("[", "").replace("]", "").replace(",", "\n") + "\n").replace(animations[curAnimation % animations.length]
+            + "\n", '>${animations[curAnimation % animations.length]}<\n');
     }
 }

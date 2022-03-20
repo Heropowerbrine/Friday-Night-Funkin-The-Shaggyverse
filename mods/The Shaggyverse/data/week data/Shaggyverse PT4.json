@@ -1,0 +1,72 @@
+{
+    "groupName": "Shaggyverse PT4",
+    "pathName": "shaggyverse",
+    "weeks": [
+        {
+            "imagePath": "week21",
+            "songs": [
+                "Twofold Tension",
+                "Godified Destruction"
+            ],
+            "characters": [
+                "rshaggy",
+                "bf",
+                "offsetshaggy"
+            ],
+            "weekTitle": "The Two...",
+            "difficulties": [
+                ["4k Mania", "shaggy/mania"],
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week22",
+            "songs": [
+                "Despondency"
+            ],
+            "characters": [
+                "orangeshaggy_menu",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Who are you..?",
+            "difficulties": [
+                ["4k Mania", "shaggy/mania"],
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week23",
+            "songs": [
+                "Chill",
+                "Tray Doe"
+            ],
+            "characters": [
+                "shaggy",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "He's back...",
+            "difficulties": [
+                ["4k Mania", "shaggy/mania"],
+                ["canon", "shaggy/canon"]
+            ]
+        },
+        {
+            "imagePath": "week24",
+            "songs": [
+                "Game Over"
+            ],
+            "characters": [
+                "omatt_menu",
+                "bf",
+                "gf"
+            ],
+            "weekTitle": "Funny Matt",
+            "difficulties": [
+                ["4k Mania", "shaggy/mania"],
+                ["canon", "shaggy/canon"]
+            ]
+        }
+    ]
+}

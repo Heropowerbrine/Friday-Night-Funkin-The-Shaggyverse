@@ -1,7 +1,7 @@
 # Changelog
 All notable changes will be documented in this file.
 
-## [0.4.1] - ?/?/????
+## [0.4.1] - 2/26/2022
 ### Added
 - Copy and Paste Section.
 - Option in Charter to have 1 note use multiple characters.
@@ -20,10 +20,14 @@ All notable changes will be documented in this file.
 - Invisible Notes (Stealth Mod I guess) Option.
 - Custom Game Over Sounds For Characters.
 - Lua Stages
+- Character Ids to Charter
+- Some Cool Shader Stuff (mainly 3d shader from dave and bambi)
+- Some more symbols can be used in Alphabet Text.
 ### Changed
 - New Note Splash Sprites!
 - FPS Cap Max is now 1000 (800 before lol).
 - Section Size actually does something in the charter again.
+- Unhardcoded Judgement Timing Presets.
 ### Fixed
 - Saving Replays when the bot has been used.
 - Infinite Mania now doesn't crash game (because before, it would crash due to missing keybinds).
@@ -37,7 +41,7 @@ All notable changes will be documented in this file.
 - Alt Idle Animations Being Weird.
 - Alt Animations not playing when using `Playing As Opponent`.
 - Held Notes looking really weird.
-- Modcharts are compatibile with Linux!!! :D (idk about Mac tho since I don't own one)
+- Modcharts are compatible with Linux!!! :D (idk about Mac tho since I don't own one)
 - Invalid Character Ids Crashing The Game
 - Copy and Pasting Sections being broken.
 ### Removed

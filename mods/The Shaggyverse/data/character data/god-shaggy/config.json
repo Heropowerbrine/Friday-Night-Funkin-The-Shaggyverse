@@ -3,7 +3,7 @@
     "dancesLeftAndRight": false,
     "imagePath": "god-shaggy",
     "spritesheetType": "SPARROW",
-    "barColor": [121, 255, 48],
+    "barColor": [138, 183, 113],
     "animations": [
         {
             "name": "idle",

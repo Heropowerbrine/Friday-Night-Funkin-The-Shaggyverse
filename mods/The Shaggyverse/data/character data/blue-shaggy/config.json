@@ -3,7 +3,7 @@
     "dancesLeftAndRight": true,
     "imagePath": "blue-shaggy",
     "spritesheetType": "SPARROW",
-    "barColor": [52, 158, 235],
+    "barColor": [191, 221, 234],
     "animations": [
         {
             "name": "danceLeft",

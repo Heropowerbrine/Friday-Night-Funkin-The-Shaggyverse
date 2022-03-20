@@ -91,6 +91,6 @@ class SimpleInfoDisplay extends TextField
 
     function version_Function()
     {
-        text += "The Shaggyverse Version: " + Application.current.meta.get('version');
-    }
+        text += "The Shaggyverse V: " + Application.current.meta.get('version') +"\nLeather Engine V: 0.4.1";
+    } 
 }

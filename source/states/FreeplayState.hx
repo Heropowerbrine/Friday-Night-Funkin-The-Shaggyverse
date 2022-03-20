@@ -534,18 +534,18 @@ class FreeplayState extends MusicBeatState
 		// Song Inst
 		if(utilities.Options.getData("freeplayMusic"))
 		{
-			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName, curDiffString.toLowerCase()));
-			FlxG.sound.music.fadeIn(1, 0, 0.7);
+			FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName, curDiffString.toLowerCase()), 0.7);
 
-			if(vocals.playing)
+			if(vocals.active && vocals.playing)
 				vocals.stop();
 
 			#if cpp
 			@:privateAccess
 			{
-				lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, curSpeed);
+				if(FlxG.sound.music.active && FlxG.sound.music.playing)
+					lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, curSpeed);
 	
-				if (vocals.playing)
+				if (vocals.active && vocals.playing)
 					lime.media.openal.AL.sourcef(vocals._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, curSpeed);
 			}
 			#end
@@ -568,13 +568,13 @@ class FreeplayState extends MusicBeatState
 			{
 				iconArray[i].alpha = 0.6;
 
-				if(iconArray[i].animation.curAnim != null)
+				if(iconArray[i].animation.curAnim != null && !iconArray[i].animatedIcon)
 					iconArray[i].animation.curAnim.curFrame = 0;
 			}
 	
 			iconArray[curSelected].alpha = 1;
 
-			if(iconArray[curSelected].animation.curAnim != null)
+			if(iconArray[curSelected].animation.curAnim != null && !iconArray[curSelected].animatedIcon)
 			{
 				iconArray[curSelected].animation.curAnim.curFrame = 2;
 

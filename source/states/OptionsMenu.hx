@@ -41,7 +41,7 @@ class OptionsMenu extends MusicBeatState
 			"Categories",
 			new PageOption("Gameplay", 0, "Gameplay"),
 			new PageOption("Graphics", 1, "Graphics"),
-			new PageOption("Tools", 2, "Tools"),
+			new PageOption("Tools (Very WIP)", 2, "Tools"),
 			new PageOption("Misc", 3, "Misc"),
 			new ImportOldHighscoreOption("Import Old Scores", "Import Old Scores", 4)
 		],
@@ -72,13 +72,15 @@ class OptionsMenu extends MusicBeatState
 			new BoolOption("Bigger Score Text", "biggerScoreInfo", 5),
 			new BoolOption("Bigger Info Text", "biggerInfoText", 6),
 			new StringSaveOption("Time Bar Style", ["leather engine", "psych engine", "new kade engine", "old kade engine"], 7, "timeBarStyle"),
-			new BoolOption("Flashing Lights", "flashingLights", 8)
+			new PageOption("Screen Effects", 8, "Screen Effects")
 		],
 		[
 			"Tools",
 			new PageOption("Back", 0, "Categories"),
 			new GameStateOption("Charter", 1, new ChartingState()),
+			#if debug
 			new GameStateOption("Charter Dev", 1, new ChartingStateDev()),
+			#end
 			new GameStateOption("Animation Debug", 2, new AnimationDebug("dad")),
 			new GameStateOption("Stage Editor", 3, new StageMakingState("stage")),
 			new GameStateOption("Character Creator", 4, new CharacterCreationState("bf"))
@@ -87,7 +89,7 @@ class OptionsMenu extends MusicBeatState
 			"Misc",
 			new PageOption("Back", 0, "Categories"),
 			new BoolOption("Prototype Title Screen", "oldTitle", 1),
-			new BoolOption("Friday-Night Title Music", "nightMusic", 2),
+			new BoolOption("Friday Night Title Music", "nightMusic", 2),
 			new BoolOption("Watermarks", "watermarks", 3),
 			new BoolOption("Freeplay Music", "freeplayMusic", 4),
 			#if discord_rpc
@@ -95,8 +97,6 @@ class OptionsMenu extends MusicBeatState
 			#end
 			new StringSaveOption("Cutscenes Play On", ["story","freeplay","both"], 6, "cutscenePlaysOn"),
 			new StringSaveOption("Play As", ["bf", "opponent"], 7, "playAs"),
-			new BoolOption("Camera Tracks Direction", "cameraTracksDirections", 8),
-			new BoolOption("Camera Bounce", "cameraZooms", 9),
 			new BoolOption("Disable Debug Menus", "disableDebugMenus", 10),
 			new BoolOption("Invisible Notes", "invisibleNotes", 11)
 		],
@@ -148,6 +148,14 @@ class OptionsMenu extends MusicBeatState
 			new BoolOption("Note Accuracy Text", "displayMs", 4),
 			new NoteColorMenuOption("Note Colors", 5),
 			new UISkinSelectOption("UI Skin", 6)
+		],
+		[
+			"Screen Effects",
+			new PageOption("Back", 0, "Graphics"),
+			new BoolOption("Camera Tracks Direction", "cameraTracksDirections", 1),
+			new BoolOption("Camera Bounce", "cameraZooms", 2),
+			new BoolOption("Flashing Lights", "flashingLights", 3),
+			new BoolOption("Screen Shake", "screenShakes", 4)
 		]
 	];
 
@@ -160,8 +168,10 @@ class OptionsMenu extends MusicBeatState
 		if(PlayState.instance == null)
 			pages[3][2] = null;
 
+		#if debug
 		if(PlayState.instance == null)
 			pages[3][3] = null;
+		#end
 		
 		MusicBeatState.windowNameSuffix = "";
 		
@@ -187,7 +197,8 @@ class OptionsMenu extends MusicBeatState
 
 		LoadPage("Categories");
 
-		FlxG.sound.playMusic(MusicUtilities.GetOptionsMenuMusic(), 0.7, true);
+		if(FlxG.sound.music == null)
+			FlxG.sound.playMusic(MusicUtilities.GetOptionsMenuMusic(), 0.7, true);
 	}
 
 	public static function LoadPage(Page_Name:String)

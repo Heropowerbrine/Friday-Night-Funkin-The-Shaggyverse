@@ -26,7 +26,8 @@
             "songs": [
                 "Thunderstorm",
                 "Dissasembler",
-                "Red Man"
+                "Red Man",
+                "Kami Fura"
             ],
             "characters": [
                 "rshaggy",
@@ -42,15 +43,15 @@
         {
             "imagePath": "week9",
             "songs": [
-                "Kami Fura",
-                "Paridocial"
+                "Paradoxical",
+                "Soaring Demiurges"
             ],
             "characters": [
                 "rshaggy",
                 "bf",
                 "gf"
             ],
-            "weekTitle": "Funky",
+            "weekTitle": "The Unexpected Duo...",
             "difficulties": [
                 ["4k Mania", "shaggy/mania"],
                 ["canon", "shaggy/canon"]
@@ -60,7 +61,8 @@
             "imagePath": "week10",
             "songs": [
                 "Sandstorm",
-                "Ultra Instinct"
+                "Ultra Instinct",
+                "Demigod"
             ],
             "characters": [
                 "godred",
@@ -80,7 +82,7 @@
                 "Ultra Instinct New"
             ],
             "characters": [
-                "shaggymatt",
+                "shaggy",
                 "bf",
                 "gf"
             ],

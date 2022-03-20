@@ -2,7 +2,6 @@ package utilities;
 
 import game.Conductor;
 import states.PlayState;
-import flixel.FlxG;
 
 class Ratings
 {
@@ -44,20 +43,31 @@ class Ratings
         return rating;
     }
 
+    public static var timingPresets:Map<String, Array<Int>> = [];
+    public static var presets:Array<String> = [];
+
     public static function returnPreset(name:String = "leather engine"):Array<Int>
     {
-        switch(name.toLowerCase())
-        {
-            case "leather engine":
-                return [25, 50, 70, 100];
-            case "kade engine" | "psych engine":
-                /* 22.5 but rounded */
-                return [23, 45, 90, 135];
-            case "friday night funkin'":
-                return [Std.int(Conductor.safeZoneOffset * 0.1), Std.int(Conductor.safeZoneOffset * 0.2), Std.int(Conductor.safeZoneOffset * 0.75), Std.int(Conductor.safeZoneOffset * 0.9)];
-        }
+        if(timingPresets.exists(name))
+            return timingPresets.get(name);
 
         return [25, 50, 70, 100];
+    }
+
+    public static function loadPresets()
+    {
+        presets = [];
+        timingPresets = [];
+
+        var timingPresetsArray = CoolUtil.coolTextFile(Paths.txt("timingPresets"));
+
+        for(array in timingPresetsArray)
+        {
+            var values = array.split(",");
+
+            timingPresets.set(values[0], [Std.parseInt(values[1]), Std.parseInt(values[2]), Std.parseInt(values[3]), Std.parseInt(values[4])]);
+            presets.push(values[0]);
+        }
     }
 
     public static function getRank(accuracy:Float, ?misses:Int)
@@ -65,90 +75,116 @@ class Ratings
         // yeah this is kinda taken from kade engine but i didnt use the etterna 'wife3' ranking system (instead just my own custom values)
         var conditions:Array<Bool>;
 
-        if(utilities.Options.getData("ratingType") == "complex")
+        switch(utilities.Options.getData("ratingType").toLowerCase())
         {
-            conditions = [
-                accuracy == 100, // Like, WOW
-                accuracy >= 98, // Like, Thats Great!
-                accuracy >= 95, // Like, Thats Good
-                accuracy >= 92, // Hey Scoob, This Kid Is Good!
-                accuracy >= 89, // This is a challenge!
-                accuracy >= 85, // Like Thats Sick!
-                accuracy >= 80, // Starting to improve!
-                accuracy >= 70, // Thats, like, really cool!
-                accuracy >= 69, // haha, nice.
-                accuracy >= 65, // Like, Thats Great!
-                accuracy >= 50, // ZOINKS!
-                accuracy >= 10, // Like, How are you still alive?
-                accuracy >= 5, // Like, You're Bad
-                accuracy < 4, // Ruh Rouh
-            ];
-        }
-        else // simple
-        {
-            conditions = [
-                accuracy == 100, // Like, WOW
-                accuracy >= 85, // Hey Scoob, This Kid Is Good!
-                accuracy >= 60, // Like Thats Sick!
-                accuracy >= 50, // ZOINKS!
-                accuracy >= 35, // Like, How are you still alive?
-                accuracy >= 10, // REALLY BAD
-                accuracy >= 2, // OOF
-                accuracy >= 0 // Ruh Rouh
-            ];
+            case "complex":
+                conditions = [
+                    accuracy == 100, // SSSS
+                    accuracy >= 98, // SSS
+                    accuracy >= 95, // SS
+                    accuracy >= 92, // S
+                    accuracy >= 89, // AA
+                    accuracy >= 85, // A
+                    accuracy >= 80, // B+
+                    accuracy >= 70, // B
+                    accuracy >= 65, // C
+                    accuracy >= 50, // D
+                    accuracy >= 10, // E
+                    accuracy >= 5, // F
+                    accuracy < 4, // G
+                ];
+            case "psych":
+                conditions = [
+                    accuracy == 100, // Perfect!!
+                    accuracy >= 90, // Sick!
+                    accuracy >= 80, // Great
+                    accuracy >= 70, // Good
+                    accuracy >= 69, // Nice
+                    accuracy >= 60, // Meh
+                    accuracy >= 50, // Bruh
+                    accuracy >= 40, // Bad
+                    accuracy >= 20, // Shit
+                    accuracy >= 0 // You Suck!
+                ];
+            default:
+                conditions = [
+                    accuracy == 100, // PERFECT
+                    accuracy >= 85, // SICK
+                    accuracy >= 60, // GOOD
+                    accuracy >= 50, // OK
+                    accuracy >= 35, // BAD
+                    accuracy >= 10, // REALLY BAD
+                    accuracy >= 2, // OOF
+                    accuracy >= 0 // wow you really suck
+                ];
         }
 
         var missesRating:String = "";
 
-        if(utilities.Options.getData("ratingType") == "complex")
+        var ratingsArray:Array<Int> = [
+            PlayState.instance.ratings.get("marvelous"),
+            PlayState.instance.ratings.get("sick"),
+            PlayState.instance.ratings.get("good"),
+            PlayState.instance.ratings.get("bad"),
+            PlayState.instance.ratings.get("shit")
+        ];
+
+        switch(utilities.Options.getData("ratingType").toLowerCase())
         {
-            if(misses != null)
-            {
-                var ratingsArray:Array<Int> = [
-                    PlayState.instance.ratings.get("marvelous"),
-                    PlayState.instance.ratings.get("sick"),
-                    PlayState.instance.ratings.get("good"),
-                    PlayState.instance.ratings.get("bad"),
-                    PlayState.instance.ratings.get("shit")
-                ];
-    
-                if(misses == 0)
+            case "complex":
+                if(misses != null)
                 {
-                    missesRating = "FC - ";
-    
-                    if(ratingsArray[3] < 10 && ratingsArray[4] == 0)
-                        missesRating = "SDB - ";
-    
-                    if(ratingsArray[3] == 0 && ratingsArray[4] == 0)
-                        missesRating = "GFC - ";
-    
-                    if(ratingsArray[2] < 10 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
-                        missesRating = "SDG - ";
-    
-                    if(ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
-                        missesRating = "PFC - ";
-    
-                    if(ratingsArray[1] < 10 && ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
-                        missesRating = "SDP - ";
-    
-                    if(ratingsArray[1] == 0 && ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
-                        missesRating = "MFC - ";
+                    if(misses == 0)
+                    {
+                        missesRating = "FC - ";
+        
+                        if(ratingsArray[3] < 10 && ratingsArray[4] == 0)
+                            missesRating = "SDB - ";
+        
+                        if(ratingsArray[3] == 0 && ratingsArray[4] == 0)
+                            missesRating = "GFC - ";
+        
+                        if(ratingsArray[2] < 10 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
+                            missesRating = "SDG - ";
+        
+                        if(ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
+                            missesRating = "PFC - ";
+        
+                        if(ratingsArray[1] < 10 && ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
+                            missesRating = "SDP - ";
+        
+                        if(ratingsArray[1] == 0 && ratingsArray[2] == 0 && ratingsArray[3] == 0 && ratingsArray[4] == 0)
+                            missesRating = "MFC - ";
+                    }
+        
+                    if(misses > 0 && misses < 10)
+                        missesRating = "SDCB - ";
+        
+                    if(misses >= 10)
+                        missesRating = "CLEAR - ";
                 }
-    
-                if(misses > 0 && misses < 10)
-                    missesRating = "SDCB - ";
-    
-                if(misses >= 10)
-                    missesRating = "CLEAR - ";
-            }
-        }
-        else
-        {
-            if(misses != null)
-            {
-                if(misses == 0)
-                    missesRating = "FC - ";
-            }
+            case "psych":
+                if(misses != null)
+                {
+                    if(ratingsArray[0] > 0)
+                        missesRating = " - " + "MFC";
+                    if(ratingsArray[1] > 0)
+                        missesRating = " - " + "SFC";
+                    if(ratingsArray[2] > 0)
+                        missesRating = " - " + "GFC";
+                    if(ratingsArray[3] > 0 || ratingsArray[4] > 0)
+                        missesRating = " - " + "FC";
+                    if(misses > 0 && misses < 10)
+                        missesRating = " - " + "SDCB";
+                    else if(misses >= 10)
+                        missesRating = " - " + "Clear";
+                }
+            default:
+                if(misses != null)
+                {
+                    if(misses == 0)
+                        missesRating = "FC - ";
+                }
         }
 
         for(condition in 0...conditions.length)
@@ -189,6 +225,30 @@ class Ratings
                             case 12:
                                 return missesRating + "G - Ruh Rouh!";
                         }
+                    case "psych":
+                        switch(condition)
+                        {
+                            case 0:
+                                return "Rating: " + "Perfect!!" + missesRating;
+                            case 1:
+                                return "Rating: " + "Sick!" + missesRating;
+                            case 2:
+                                return "Rating: " + "Great" + missesRating;
+                            case 3:
+                                return "Rating: " + "Good" + missesRating;
+                            case 4:
+                                return "Rating: " + "Nice" + missesRating;
+                            case 5:
+                                return "Rating: " + "Meh" + missesRating;
+                            case 6:
+                                return "Rating: " + "Bruh" + missesRating;
+                            case 7:
+                                return "Rating: " + "Bad" + missesRating;
+                            case 8:
+                                return "Rating: " + "Shit" + missesRating;
+                            case 9:
+                                return "Rating: " + "You Suck!" + missesRating;
+                        }
                     default:
                         switch(condition)
                         {
@@ -213,7 +273,10 @@ class Ratings
             }
         }
 
-        return "N/A";
+        if(utilities.Options.getData("ratingType") != "psych")
+            return "N/A";
+        else
+            return "Rating: ?";
     }
 
     public static function getScore(rating:String)
