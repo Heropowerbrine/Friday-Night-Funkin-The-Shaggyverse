@@ -1,12 +1,10 @@
 ![Logo](art/Logo.png)
 
-This is the repository for Leather Engine, an engine created for making and playing mods for Friday Night Funkin'.
+This is the repository for The Shaggyverse, the ultimate Friday Night Funkin': Vs Shaggy showdown!
 
 ## Links
 
-- [Gamebanana Page](https://gamebanana.com/mods/334945)
-
-- [Some Mod Ports](https://github.com/Leather128/LeathersFNFModPorts)
+- [Gamebanana Page](https://gamebanana.com/mods/346863)
 
 ## Build Instructions 
 
@@ -14,6 +12,7 @@ This is the repository for Leather Engine, an engine created for making and play
 
 IF YOU GET ANY ERRORS THAT SEEM TO RELATE TO `POLYMOD` (or `NULL OBJECT REFERENCE` / `VALUE EXCEPTION`) RUN `haxelib install polymod 1.3.0` OR `haxelib set polymod 1.3.0` TO SET POLYMOD TO 1.3.0 BECAUSE 1.4.0+ SEEMS BROKEN AS OF NOW.
 
+<<<<<<< HEAD
 For build instructions go to [Build.md](https://github.com/Leather128/LeatherEngine/blob/main/Build.md)
 
 ## Features
@@ -39,6 +38,9 @@ You can have different note types that give different amounts of health or give 
 You can load, share, and play replays of songs you've played! They can even be included in mods in the mods folder to make them easier to share!
 
 > More to come...
+=======
+For build instructions go to [Build.md](https://github.com/Vortex2Oblivion/Friday-Night-Funkin-The-Shaggyverse/blob/main/Build.md
+>>>>>>> 0e79b3c48fc4e0ce238572d9471cd67a67338021
 
 ## Credits
 
