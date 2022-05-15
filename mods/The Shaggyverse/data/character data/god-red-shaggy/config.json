@@ -4,6 +4,11 @@
     "imagePath": "god-red-shaggy",
     "spritesheetType": "SPARROW",
     "barColor": [235, 64, 52],
+    "trail": true,
+    "trailLength": 10,
+    "trailDelay": 24,
+    "trailStalpha": 0.3,
+    "trailDiff": 0.069,
     "animations": [
         {
             "name": "idle",

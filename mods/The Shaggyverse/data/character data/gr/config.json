@@ -4,11 +4,11 @@
     "characters": [
         {
             "name": "red-shaggy",
-            "positionOffset": [-225,0]
+            "positionOffset": [0,0]
         },
         {
             "name": "green-shaggy",
-            "positionOffset": [0,0]
+            "positionOffset": [-225,0]
         }
     ]
 }

@@ -458,6 +458,8 @@ class FreeplayState extends MusicBeatState
 					PlayState.storyDifficultyStr = curDiffString.toUpperCase();
 		
 					PlayState.storyWeek = songs[curSelected].week;
+					FlxG.switchState(new CharacterSelectState());
+					LoadingState.loadAndSwitchState(new PlayState());
 					trace('CUR WEEK' + PlayState.storyWeek);
 
 					if(Assets.exists(Paths.inst(PlayState.SONG.song, PlayState.storyDifficultyStr)))
@@ -466,7 +468,6 @@ class FreeplayState extends MusicBeatState
 							colorTween.cancel();
 
 						PlayState.chartingMode = false;
-						LoadingState.loadAndSwitchState(new PlayState());
 
 						FlxG.sound.music.volume = 0;
 						destroyFreeplayVocals();

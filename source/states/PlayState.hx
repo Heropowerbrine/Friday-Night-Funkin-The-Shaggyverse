@@ -78,7 +78,8 @@ using StringTools;
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState = null;
-
+	public static var characteroverride:String = "none";
+	public static var bfMode:String = '';
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -94,6 +95,8 @@ class PlayState extends MusicBeatState
 	public static var dad:Character;
 	public static var gf:Character;
 	public static var boyfriend:Boyfriend;
+	public var songPopup:FlxSprite;
+	public var popupText:FlxText;
 
 	public var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -864,6 +867,84 @@ class PlayState extends MusicBeatState
 				ratingText.scrollFactor.set();
 				add(ratingText);
 			}
+			songPopup = new FlxSprite(-20,0).loadGraphic(Paths.image('SlideIn'));
+			songPopup.cameras = [camHUD];
+			//songPopup.alpha = 0;
+			songPopup.x -= songPopup.width;
+			songPopup.y = FlxG.height - 100 - songPopup.height;
+			add(songPopup);
+			
+			var composer:String = "";
+			//var charter:String = "";
+	
+			
+	
+			switch(SONG.song.toLowerCase())
+			{
+				case "where are you" | "eruption" | "kaio ken" | "whats new" | "blast" | "super saiyan" | "god eater" | "soothing power" | "astral calamity" | "talladega" | "srperez ulta instinct" | "revenge" | "final destination":
+					composer = "srPerez";
+				case "thunderstorm": 
+					composer = "Saruky";
+				case "dissasembler" | "power link":
+					composer = "Joan Atlas";
+				case "ultra-instinct": 
+					composer = "Totally-Not-Genji";
+				case "zen" | "demagogue" | "surge" | "destructive duo" | "burning regret" | "cosmic cessation" | "heatwave" | "kami fura" | "paradoxical" | "soaring demiurges" | "disturbance" | "adagio" | "solstice" | "quadripresent deitys" | "galaxy demolisher" | "ahp" | "bfdr" | "spacial collapse": 
+					composer = "Spurk";
+				case "immortals division" | "cooldown" | "colossal might" | "deadly temptation" | "twofold tension" | "lunar vigor": 
+					composer = "Antarkh";
+				case "edc": 
+					composer = "Treency";
+				case "enraged" | "coercion" | "uproar": 
+					composer = "Jasyak";
+				case "collapse" | "ultra instinct" | "ultra instinct new" | "ultra-instinct-new" | "neutron" | "multiversal": 
+					composer = "Tomz_";
+				case "ischyros" | "intergalactic sin" | "chance" | "multicolor demise" | "godified destruction" | "furia" | "addition": 
+					composer = "Viniciusvmor";
+				case "cheater suffering" | "playing with god": 
+					composer = "NobodyKnows";
+				case "astromical funk": 
+					composer = "Magma Blood";
+				case "red man" | "sandstorm": 
+					composer = "•[Arty And Funky FL]•";
+				case "demigod" | "suprise!": 
+					composer = "JJTheProducer";
+				case "Snowstorm" | "Frostbite": 
+					composer = "Toxsiu";
+				case "energy saver": 
+					composer = "Corbin Combo";
+				case "absolute chaos": 
+					composer = "PicoGaming";
+				case "godlike" | "universe conquerer": 
+					composer = "Hortas";
+				case "despondency": 
+					composer = "ScratchRZL";
+				case "power link nub": 
+					composer = "Nubbie";
+				case "multi-zoink": 
+					composer = "ronbrazy";
+				case "calming competence" | "imitheos": 
+					composer = "Sebastian Elijah";
+				case "agnate": 
+					composer = "AngryRacc";
+				case "infiltrate": 
+					composer = "ToN";
+				case "first frights": 
+					composer = "stizzy";
+			}
+	
+			var formattedSong = SONG.song.replace('-', ' ');
+	
+			var popText = "" + formattedSong + "\nComposer: " + composer;
+	
+			popupText = new FlxText(songPopup.x, songPopup.y + 20, songPopup.width, popText, 20);
+			popupText.setFormat(Paths.font("vcr.ttf"), 28, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			popupText.scrollFactor.set();
+			popupText.borderSize = 1.25;
+	
+			//popupText.offset.set(10, 50);
+			popupText.cameras = [camHUD];
+			add(popupText);
 
 			strumLineNotes.cameras = [camHUD];
 			notes.cameras = [camHUD];
@@ -1437,6 +1518,22 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
+		FlxTween.tween(songPopup, {alpha: 0.7, x: 20}, 0.5, {ease: FlxEase.circOut});
+		FlxTween.tween(popupText, {alpha: 0.7, x: 20}, 0.5, {ease: FlxEase.circOut});
+		new FlxTimer().start(4.5, function(tmr:FlxTimer)
+		{
+			
+			FlxTween.tween(songPopup, {x: 0 - songPopup.width}, 0.5, {
+				onComplete: function(twn:FlxTween) {
+					remove(songPopup);
+					songPopup.kill();
+					remove(popupText);
+				},
+				onUpdate: function(twn:FlxTween) {
+					popupText.x = songPopup.x;
+				},
+			ease: FlxEase.quartIn});
+		});
 		startingSong = false;
 
 		previousFrameTime = FlxG.game.ticks;

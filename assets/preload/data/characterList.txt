@@ -16,3 +16,4 @@ gf-pixel:default
 senpai:default
 senpai-angry:default
 spirit:default
+tankman:default

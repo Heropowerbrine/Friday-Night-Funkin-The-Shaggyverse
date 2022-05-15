@@ -12,6 +12,30 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import flixel.FlxBasic;
+import flixel.FlxSprite;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.util.FlxColor;
+import haxe.CallStack.StackItem;
+import haxe.CallStack;
+import haxe.io.Path;
+import lime.app.Application;
+import meta.*;
+import openfl.Assets;
+import openfl.Lib;
+import openfl.display.FPS;
+import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.events.UncaughtErrorEvent;
+
+#if desktop
+import sys.io.Process;
+import sys.FileSystem;
+import sys.io.File;
+#end
+
+
+
 
 class Main extends Sprite
 {
@@ -33,7 +57,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-
+		#if desktop
+		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
+		#end
 		if (stage != null)
 		{
 			init();
@@ -116,4 +142,62 @@ class Main extends Sprite
 	{
 		return openfl.Lib.current.stage.frameRate;
 	}
-}
+	#if desktop
+	function onCrash(e:UncaughtErrorEvent):Void
+		{
+			var errMsg:String = "";
+			var path:String;
+			var callStack:Array<StackItem> = CallStack.exceptionStack(true);
+			var dateNow:String = Date.now().toString();
+	
+			dateNow = StringTools.replace(dateNow, " ", "_");
+			dateNow = StringTools.replace(dateNow, ":", "'");
+	
+			path = "./crash/" + "SV_" + dateNow + ".txt";
+	
+			for (stackItem in callStack)
+			{
+				switch (stackItem)
+				{
+					case FilePos(s, file, line, column):
+						errMsg += file + " (line " + line + ")\n";
+					default:
+						Sys.println(stackItem);
+				}
+			}
+	
+			errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the Discord Server: https://discord.gg/y6RuRHhuSj";
+	
+			if (!FileSystem.exists("./crash/"))
+				FileSystem.createDirectory("./crash/");
+	
+			File.saveContent(path, errMsg + "\n");
+	
+			Sys.println(errMsg);
+			Sys.println("Crash dump saved in " + Path.normalize(path));
+	
+			var crashDialoguePath:String = "SV-CrashDialog";
+	
+			#if windows
+			crashDialoguePath += ".exe";
+			#end
+	
+			if (FileSystem.exists("./" + crashDialoguePath))
+			{
+				Sys.println("Found crash dialog: " + crashDialoguePath);
+	
+				#if linux
+				crashDialoguePath = "./" + crashDialoguePath;
+				#end
+				new Process(crashDialoguePath, [path]);
+			}
+			else
+			{
+				Sys.println("No crash dialog found! Making a simple alert instead...");
+				Application.current.window.alert(errMsg, "Error!");
+			}
+	
+			Sys.exit(1);
+		}
+		#end
+	}

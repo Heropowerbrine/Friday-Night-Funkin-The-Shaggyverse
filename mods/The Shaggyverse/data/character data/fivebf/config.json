@@ -21,10 +21,6 @@
         {
             "name": "playerbf",
             "positionOffset": [-400,80]
-        },
-        {
-            "name": "softie",
-            "positionOffset": [-600,80]
         }
     ]
 }
