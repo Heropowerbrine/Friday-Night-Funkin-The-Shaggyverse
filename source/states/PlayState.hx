@@ -899,7 +899,7 @@ class PlayState extends MusicBeatState
 					composer = "Jasyak";
 				case "collapse" | "ultra instinct" | "ultra instinct new" | "ultra-instinct-new" | "neutron" | "multiversal": 
 					composer = "Tomz_";
-				case "ischyros" | "intergalactic sin" | "chance" | "multicolor demise" | "godified destruction" | "furia" | "addition": 
+				case "iscyhros" | "iscyhros new" | "intergalactic sin" | "chance" | "multicolor demise" | "godified destruction" | "furia" | "addition": 
 					composer = "Viniciusvmor";
 				case "cheater suffering" | "playing with god": 
 					composer = "NobodyKnows";

@@ -3,7 +3,7 @@
     "dancesLeftAndRight": false,
     "imagePath": "godgreen",
     "spritesheetType": "SPARROW",
-    "barColor": [235, 64, 52],
+    "barColor": [138, 183, 113],   
     "trail": true,
     "trailLength": 10,
     "trailDelay": 24,
