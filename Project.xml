@@ -32,7 +32,7 @@
 	<window if="desktop vsync" orientation="landscape" fullscreen="false" resizable="true" vsync="true"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+	<window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720" resizable="false"/>
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
@@ -50,7 +50,7 @@
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 
 	<!-- LEATHER ENGINE CUSTOMIZATION -->
-	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bit"/>
+	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32bit"/>
 
 	<assets path="mods" embed="false" exclude="*.ogg" if="web"/>
 	<assets path="mods" embed="false" exclude="*.mp3" unless="web"/>
@@ -118,6 +118,9 @@
 	
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="linc_luajit" if="desktop"/>
+	
+	<haxelib name="extension-videoview" if="android"/>
+        <haxelib name="extension-androidtools" if="android"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -154,6 +157,20 @@
 	<!-- Akways enable Null Object Reference check for crash dialog -->
 	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
 	<haxedef name="HXCPP_STACK_LINE" if="release" />
+	
+	<!-- make's game use less ram -->
+        <haxedef name="HXCPP_GC_BIG_BLOCKS"/>
+
+	<!-- Akways enable Null Object Reference check -->
+	<haxedef name="HXCPP_CHECK_POINTER" if="release" />
+	<haxedef name="HXCPP_STACK_LINE" if="release" />
+
+	<!-- Android stuff: thanks Yoshi Engine -->
+	<android permission="android.permission.ACCESS_NETWORK_STATE"/>
+	<android permission="android.permission.INTERNET"/>
+	<android permission="android.permission.VIBRATE"/>
+	<android permission="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<android permission="android.permission.READ_EXTERNAL_STORAGE"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
