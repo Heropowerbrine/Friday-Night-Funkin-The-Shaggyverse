@@ -100,7 +100,7 @@ class Replay
             rawJson = Assets.getText(Paths.json(replayFile, "replays")).trim();
         #if sys
         else
-            rawJson = sys.io.File.getContent(Sys.getCwd() + "assets/replays/" + replayFile + ".json").trim();
+            rawJson = sys.io.File.getContent(SUtil.getPath() + Sys.getCwd() + "assets/replays/" + replayFile + ".json").trim();
         #end
 
         if(rawJson == "")
@@ -138,7 +138,7 @@ class Replay
         var replays:Array<String> = [];
 
         #if sys
-        var sysReplays = sys.FileSystem.readDirectory(Sys.getCwd() + "assets/replays/");
+        var sysReplays = sys.FileSystem.readDirectory(SUtil.getPath() + Sys.getCwd() + "assets/replays/");
         
         if(sysReplays.length > 0)
         {
@@ -155,9 +155,9 @@ class Replay
         {
             for(mod in modList)
             {
-                if(sys.FileSystem.exists(Sys.getCwd() + "mods/" + mod + "/replays/"))
+                if(sys.FileSystem.exists(SUtil.getPath() + Sys.getCwd() + "mods/" + mod + "/replays/"))
                 {
-                    var modSysReplays = sys.FileSystem.readDirectory(Sys.getCwd() + "mods/" + mod + "/replays/");
+                    var modSysReplays = sys.FileSystem.readDirectory(SUtil.getPath() + Sys.getCwd() + "mods/" + mod + "/replays/");
 
                     if(modSysReplays.length > 0)
                     {
