@@ -33,12 +33,12 @@ class Paths
 
 		if (currentLevel != null)
 		{
-			var levelPath = getLibraryPathForce(file, currentLevel);
+			var levelPath = SUtil.getPath() + getLibraryPathForce(file, currentLevel);
 
 			if (OpenFlAssets.exists(levelPath, type))
 				return levelPath;
 
-			levelPath = getLibraryPathForce(file, "shared");
+			levelPath = SUtil.getPath() + getLibraryPathForce(file, "shared");
 
 			if (OpenFlAssets.exists(levelPath, type))
 				return levelPath;
@@ -89,7 +89,7 @@ class Paths
 
 	static public function video(key:String, ?ext:String = VIDEO_EXT)
 	{
-		return 'assets/videos/$key.$ext';
+		return SUtil.getPath() + 'assets/videos/$key.$ext';
 	}
 
 	static public function sound(key:String, ?library:String)
@@ -149,7 +149,7 @@ class Paths
 
 	inline static public function font(key:String)
 	{
-		return 'assets/fonts/$key';
+		return SUtil.getPath() + 'assets/fonts/$key';
 	}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)
