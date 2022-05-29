@@ -52,8 +52,8 @@
 	<!-- LEATHER ENGINE CUSTOMIZATION -->
 	<define name="VIDEOS_ALLOWED" if="web || windows || android" unless="32bit"/>
 
-	<assets path="mods" embed="true" exclude="*.ogg" if="web"/>
-	<assets path="mods" embed="true" exclude="*.mp3" unless="web"/>
+	<assets path="mods" embed="false" exclude="*.ogg" if="web"/>
+	<assets path="mods" embed="false" exclude="*.mp3" unless="web"/>
 	
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
