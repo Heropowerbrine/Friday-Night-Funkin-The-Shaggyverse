@@ -12,7 +12,7 @@ class PolymodHandler
         loadModMetadata();
 
 		Polymod.init({
-			modRoot:"mods/",
+			modRoot:SUtil.getPath() + "mods/",
 			dirs: ModList.getActiveMods(metadataArrays),
 			errorCallback: function(error:PolymodError)
 			{
@@ -34,7 +34,7 @@ class PolymodHandler
     {
         metadataArrays = [];
 
-        var tempArray = Polymod.scan("mods/","*.*.*",function(error:PolymodError) {
+        var tempArray = Polymod.scan(SUtil.getPath() + "mods/","*.*.*",function(error:PolymodError) {
 			//trace(error.message);
 		});
 
