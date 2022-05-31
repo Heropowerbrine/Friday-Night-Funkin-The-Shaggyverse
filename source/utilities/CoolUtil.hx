@@ -56,15 +56,15 @@ class CoolUtil
 	public static function coolTextFileFromSystem(path:String):Array<String>
 	{
 		return coolTextFile(path);
-		/*
-		var daList:Array<String> = File.getContent(Sys.getCwd() + "assets/" + path + ".txt").trim().split('\n');
+		
+		var daList:Array<String> = File.getContent(SUtil.getPath() + Sys.getCwd() + "assets/" + path + ".txt").trim().split('\n');
 
 		for (i in 0...daList.length)
 		{
 			daList[i] = daList[i].trim();
 		}
 
-		return daList;*/
+		return daList;
 	}
 
 	public static function coolTextFilePolymod(path:String):Array<String>
