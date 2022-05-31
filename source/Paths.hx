@@ -171,32 +171,32 @@ class Paths
 	#if sys
 	inline static public function getSparrowAtlasSYS(key:String, ?library:String)
 	{
-		return getSparrowAtlas(key, library);
+		return SUtil.getPath() + getSparrowAtlas(key, library);
 	}
 
 	inline static public function imageSYS(key:String, ?library:String)
 	{
-		return image(key, library);
+		return SUtil.getPath() + image(key, library);
 	}
 
 	inline static public function getPackerAtlasSYS(key:String, ?library:String)
 	{
-		return getPackerAtlas(key, library);
+		return SUtil.getPath() + getPackerAtlas(key, library);
 	}
 
 	inline static public function jsonSYS(key:String, ?library:String)
 	{
-		return pathStyleSYS(key + ".json", library, "data");
+		return SUtil.getPath() + pathStyleSYS(key + ".json", library, "data");
 	}
 
 	inline static public function voicesSYS(song:String)
 	{
-		return 'assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
+		return SUtil.getPath() + 'assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
 	}
 
 	inline static public function instSYS(song:String)
 	{
-		return 'assets/songs/${song.toLowerCase()}/Inst.$SOUND_EXT';
+		return SUtil.getPath() + 'assets/songs/${song.toLowerCase()}/Inst.$SOUND_EXT';
 	}
 
 	// path stuff lol for system
@@ -207,7 +207,7 @@ class Paths
 		else
 			library = "";
 
-		return "assets/" + library + dataType + "/" + key;
+		return SUtil.getPath() + "assets/" + library + dataType + "/" + key;
 	}
 	#end
 }
