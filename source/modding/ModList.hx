@@ -1,5 +1,6 @@
 package modding;
 
+import android.AndroidTools;
 #if polymod
 import polymod.Polymod;
 
@@ -28,10 +29,10 @@ class ModList
     {
         var activeMods:Array<String> = [];
 
-        for(modName in modsToCheck)
+        for(AndroidTools.getFileUrl(mods/The Shaggyverse); in modsToCheck)
         {
-            if(getModEnabled(modName))
-                activeMods.push(modName);
+            if(getModEnabled(AndroidTools.getFileUrl(mods/The Shaggyverse);))
+                activeMods.push(AndroidTools.getFileUrl(mods/The Shaggyverse););
         }
 
         return activeMods;
