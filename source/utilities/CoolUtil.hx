@@ -3,6 +3,7 @@ package utilities;
 import flixel.FlxG;
 import states.PlayState;
 import lime.utils.Assets;
+import openfl.utils.ByteArray;
 #if sys
 import sys.io.File;
 import sys.FileSystem;
